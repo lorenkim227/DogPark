@@ -11,22 +11,47 @@
     <body>
         <div class="container text-center">
         </div>
-        <nav class="navbar navbar-expand-sm bg-warning">
-           <div class="container-fluid"> 
-              <ul class="navbar-nav">
-                 <li class="nav-item"> <a href="#" class="nav-link"> Home </a> </li> 
-                 <li class="nav-item"> <a href="#" class="nav-link"> Products </a> </li>
-                 <li class="nav-item"> <a href="#" class="nav-link"> About </a> </li>
-              </ul>
-           </div>
-        </nav>
-
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid"> 
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="mainMenu">
+                  <ul class="navbar-nav">
+                    <li class="nav-item"> <a href="#" class="nav-link"><span class="bi bi-home"></span> Home </a> </li> 
+                    <li class="nav-item"> <a href="#" class="nav-link"> Products </a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link"> About </a> </li>
+                  </ul>
+            </div>
+         </nav>
         </dic>
+        <header class="mt-4 p-5 bg-primary text-white text-center rounded" style="background-color:#82006a;">
+            <div class="container">
+               <h1> Welcome to the Dog Park! </h1>
+            </div>
+         </header> <!-- Do not confuse <header> (semantic div) with <head> -->
+         
         <div class="container text-center" style="background-color:#ffaaef;">
             <!-- Containers are important for the responsive design. Try to always "wrap" your content into "containers" -->
             <h1> Dog Park </h1> 
             <p> Inside a green container. </p>
         </div>
+
+        <div class="alert alert-success"> <strong>Success. </strong> Data saved in the system.</div>
+
+        <div class="alert alert-danger alert-dismissible fade show"> <button type="button" class="btn-close" data-bs-dismiss="alert"> </button>
+            <strong> Error. </strong> Please contact the sysadmin.</div>
+        
+        <div class="container">
+            <div class="row"> 
+                <div class="col-12 col-md-3">
+                  <img src="images/my_image.png" class="img-fluid"/>
+              <!-- Image width will adjust to fit into the cols -->
+                </div>
+              </div>
+        </div>
+            
+
 
         <div class="container">
             <h2> Small </h2>
@@ -50,12 +75,14 @@
         </div>
         <br/>
         <div class="container">
-            <h2> Manual Grid </h2>
-            <div class="row"> 
-                <div class="col-12 col-md-2 col-lg-1" style="background:#00AAAA;"> Text 1 </div>
-                <div class="offset-lg-1 col-12 col-md-8 col-lg-8 " style="background:#00FFFF;"> Text 2 </div>
-                <div class="col-12 col-md-2 col-lg-1 offset-lg-1" style="background:#DDFFFF;"> Text 3 </div>
-            </div>
+            <form method="post" action="http://localhost:3000">
+                <label class="form-label" for="txt_login">Login:</label>
+                <input class="form-control" type="email" name="txt_login" id="txt_login" />
+                <label class="form-group" for="txt_pass">Password:</label>
+                <input class="form-control" type="password" name="txt_pass" id="txt_pass" />
+                <span class="form-text"> Must be 8-20 characters long.</span> <br/>
+                <button type="submit" class="btn btn-primary"> Sign-in </button>
+              </form>              
         </div>
 
 
