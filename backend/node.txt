@@ -1,0 +1,4 @@
+We are going to use simple code samples to show the difference of sequential and asynchronous.
+We are going to read a file using the "fs" (file system) module.
+Be sure to create a simple text file called "node.txt" with some content for us to read in our program. 
+The comments "code x" are related with the diagram in Slide 20 

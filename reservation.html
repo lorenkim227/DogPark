@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Make a Dog Reservation</h1>
+    <form action="/submit_reservation" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br><br>
+        <label for="dogs">Number of Dogs:</label>
+        <input type="range" id="dogs" name="dogs" min="1" max="10" required><br><br>
+
+        <input type="checkbox" name="chk_puppy" checked />
+        <label for="chk_puppy">Click here if any dogs are puppies (younger than 6 months).</label>
+
+        <input type="checkbox" name="chk_senior" checked />
+        <label for="chk_senior">Click here if any dogs are seniors (older than 8 years).</label>
+        
+        <label for="res">Select a Reservation Type:</label>
+        <input type="radio" name="restype" id="rd1" value="trainer"/>
+        <label for="rd1">Trainer</label>
+        <input type="radio" name="restype" id="rd2" value="walker"/>
+        <label for="rd2">Walker</label>
+        <input type="radio" name="restype" id="rd3" value="daycare" />
+        <label for="rd3">Doggie Day Care</label>
+
+
+
+        <label for="info">Enter dog names, ages, and other info:</label>
+        <textarea rows="5" cols="40" name="text" id="doginfo"></textarea>
+
+        <input type="submit" value="Submit Reservation">
+    </form>
+</body>
+</html>
