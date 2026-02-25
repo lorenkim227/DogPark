@@ -33,40 +33,58 @@
         </div>
     </header> <!-- Do not confuse <header> (semantic div) with <head> -->
 
-    <h2 class="text-left mt-4 mb-4"> Please fill out the form below to make a reservation </h2>
+    <div class="container mt-5">
+        <div class="card p-4">
+            <h4 class="mb-4 text-center">Reservation Details</h4>
+                <form action="/submit_reservation" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required><br><br>
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time" required><br><br>
+                    <label for="dogs">Number of Dogs:</label>
+                    <input type="range" id="dogs" name="dogs" min="1" max="10" required><br><br>
 
-    <form action="/submit_reservation" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required><br><br>
-        <label for="time">Time:</label>
-        <input type="time" id="time" name="time" required><br><br>
-        <label for="dogs">Number of Dogs:</label>
-        <input type="range" id="dogs" name="dogs" min="1" max="10" required><br><br>
+                    <input type="checkbox" name="chk_puppy" unchecked />
+                    <label for="chk_puppy">Click here if any dogs are puppies (younger than 6 months).</label>
+                    <br/>
+                    <br/>
 
-        <input type="checkbox" name="chk_puppy" checked />
-        <label for="chk_puppy">Click here if any dogs are puppies (younger than 6 months).</label>
+                    <input type="checkbox" name="chk_senior" unchecked />
+                    <label for="chk_senior">Click here if any dogs are seniors (older than 8 years).</label>
+                    <br/>
+                    <br/>
 
-        <input type="checkbox" name="chk_senior" checked />
-        <label for="chk_senior">Click here if any dogs are seniors (older than 8 years).</label>
-        
-        <label for="res">Select a Reservation Type:</label>
-        <input type="radio" name="restype" id="rd1" value="trainer"/>
-        <label for="rd1">Trainer</label>
-        <input type="radio" name="restype" id="rd2" value="walker"/>
-        <label for="rd2">Walker</label>
-        <input type="radio" name="restype" id="rd3" value="daycare" />
-        <label for="rd3">Doggie Day Care</label>
+                    <label for="res">Select a Reservation Type:</label>
+                    <br/>
+                    <input type="radio" name="restype" id="rd1" value="trainer"/>
+                    <label for="rd1">Trainer</label>
+                    <input type="radio" name="restype" id="rd2" value="walker"/>
+                    <label for="rd2">Walker</label>
+                    <input type="radio" name="restype" id="rd3" value="daycare" />
+                    <label for="rd3">Doggie Day Care</label>
+                    <br/>
+                    <br/>
 
+                    <label for="info">Enter dog names, ages, and other info:</label>
+                    <textarea rows="5" cols="40" name="text" id="doginfo"></textarea>
+                    <br/>
+                    <br/>
 
-
-        <label for="info">Enter dog names, ages, and other info:</label>
-        <textarea rows="5" cols="40" name="text" id="doginfo"></textarea>
-
-        <input type="submit" value="Submit Reservation">
-    </form>
+                    <input type="submit" class="btn btn-primary" value="Submit Reservation">
+                </form>
+        </div>
+    </div>
+    </br>
+    </br>
 </body>
+</footer>
+    <div class="footer container-fluid text-center p-4" style="background:linear-gradient(45deg,#82006a,#c2185b); color:white;">
+        <h1> Barks & Recreation </h1>
+        <p> Training, walking, doggie daycare, and more! </p>
+    </div>
+</footer>
 </html>
