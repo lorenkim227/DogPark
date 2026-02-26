@@ -48,6 +48,19 @@
                     <label for="dogs">Number of Dogs:</label>
                     <input type="range" id="dogs" name="dogs" min="1" max="10" required><br><br>
 
+                    <!-- Stack Overflow and W3 to display the range number -->
+                    <span id="dogCount">5</span>  
+                    <script>
+                        const dogRange = document.getElementById('dogs');
+                        const dogCount = document.getElementById('dogCount');
+                        dogRange.addEventListener('input', () => {
+                            dogCount.textContent = dogRange.value;
+                        });
+                    </script>
+
+                    <br/>
+                    <br/>
+
                     <input type="checkbox" name="chk_puppy" unchecked />
                     <label for="chk_puppy">Click here if any dogs are puppies (younger than 6 months).</label>
                     <br/>
