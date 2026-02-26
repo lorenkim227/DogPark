@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> <!-- charset -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- viewport -->
+
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" /> <!-- Bootstrap CSS -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    </head>
+
+    <body>
+        <div class="container text-center">
+        </div>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid"> 
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="mainMenu">
+                  <ul class="navbar-nav">
+                    <li class="nav-item"> <a href="#" class="nav-link"><span class="bi bi-house"></span> Home </a> </li> 
+                    <li class="nav-item"> <a href="#" class="nav-link"><span class="bi bi-pen"></span> About </a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link"><span class="bi bi-calendar"></span>  Calendar </a> </li>
+                    <li class="nav-item"> <a href="#" class="nav-link"><span class="bi bi-person"></span>  Profile </a> </li>
+                  </ul>
+                </div>
+        </nav>
+        </div>
+
+        <header class="p-5 text-white text-center rounded" style="background:linear-gradient(45deg,#82006a,#c2185b);;">
+            <div class="container">
+               <h1 class="display-4 fw-bold"> Welcome to Barks & Recreation! </h1>
+               <p> Training, walking, doggie daycare, and more! </p>
+               <a href="reservation.html" class="btn btn-light btn-lg mt-3">Make a Reservation</a>
+            </div>
+         </header> <!-- Do not confuse <header> (semantic div) with <head> -->
+        
+    
+    
+    <body>
+        <div class="container btn-outline-danger">
+            <h1>About Us</h1>
+            <p>Learn more about each of our facilities by clicking on the buttons below!</p>
+        </div>
+
+
+
+        <button onClick="showPool()">Show Pool</button>
+        <button onClick="showPlayArea()">Show Play Area</button>
+        <button onClick="showAgilityCourse()">Show Agility Course</button>
+
+        <div id="pool" style="display:none;">
+            <h2>Pool</h2>
+            <p>Our pool is a great place for dogs to cool off and have fun. It is designed with safety in mind and is supervised by trained staff at all times.</p>
+        </div>
+
+        <div id="play" style="display:none;">
+            <h2>Play Area</h2>
+            <p>Our play area is a spacious and secure environment where dogs can socialize and play with other dogs. It is equipped with various toys and obstacles to keep them entertained.</p>
+        </div>
+
+        <div id="agility" style="display:none;">
+            <h2>Agility Course</h2>
+            <p>Our agility course is designed to challenge and stimulate dogs both mentally and physically. It includes a variety of obstacles such as tunnels, jumps, and weave poles.</p>
+        </div>
+
+        
+    </body>
+
+    <script src="about.js"></script>
+
+</html>
