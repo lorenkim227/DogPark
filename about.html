@@ -29,44 +29,105 @@
 
         <header class="p-5 text-white text-center rounded" style="background:linear-gradient(45deg,#82006a,#c2185b);;">
             <div class="container">
-               <h1 class="display-4 fw-bold"> Welcome to Barks & Recreation! </h1>
-               <p> Training, walking, doggie daycare, and more! </p>
-               <a href="reservation.html" class="btn btn-light btn-lg mt-3">Make a Reservation</a>
+                <h1 class="display-10"> Learn More </h1>
+                <p> Training, walking, doggie daycare, and more! </p>
             </div>
          </header> <!-- Do not confuse <header> (semantic div) with <head> -->
         
     
     
     <body>
-        <div class="container btn-outline-danger">
+        <div class="container">
+            <br/>
             <h1>About Us</h1>
             <p>Learn more about each of our facilities by clicking on the buttons below!</p>
         </div>
 
+        <div class="container text-center" style="outline: 2px solid #82006a;">
+            <!-- Containers are important for the responsive design. Try to always "wrap" your content into "containers" -->
+            </br/>
+            <button onClick="showPool()" class="btn btn-outline-primary text-center">Show Pool</button>
+            <button onClick="showPlayArea()" class="btn btn-outline-dark text-center">Show Play Area</button>
+            <button onClick="showAgilityCourse()" class="btn btn-outline-danger">Show Agility Course</button>
+            <br/>
+            <br/>
+        </div>
 
-
-        <button onClick="showPool()">Show Pool</button>
-        <button onClick="showPlayArea()">Show Play Area</button>
-        <button onClick="showAgilityCourse()">Show Agility Course</button>
+        <br/>
+        <br/>
+        <br/>
 
         <div id="pool" style="display:none;">
-            <h2>Pool</h2>
-            <p>Our pool is a great place for dogs to cool off and have fun. It is designed with safety in mind and is supervised by trained staff at all times.</p>
+            <div class="container">
+                <div class="row">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="col-12 col-md-6">
+                        <img src="images/pool.png" class="img-fluid"/>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-4 text-center">Pool</h4>
+                            <p>Our pool is a great place for dogs to cool off and have fun. It is designed with safety in mind and is supervised by trained staff at all times.</p>
+                        </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
         </div>
 
         <div id="play" style="display:none;">
-            <h2>Play Area</h2>
-            <p>Our play area is a spacious and secure environment where dogs can socialize and play with other dogs. It is equipped with various toys and obstacles to keep them entertained.</p>
+            <div class="container">
+                <div class="row">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="col-12 col-md-6">
+                        <img src="images/play.png" class="img-fluid"/>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-4 text-center">Play</h4>
+                            <p>Your play area is a spacious and secure environment where dogs can socialize and play with other dogs. It is equipped with various toys and obstacles to keep them entertained.</p>
+                        </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
         </div>
 
         <div id="agility" style="display:none;">
-            <h2>Agility Course</h2>
-            <p>Our agility course is designed to challenge and stimulate dogs both mentally and physically. It includes a variety of obstacles such as tunnels, jumps, and weave poles.</p>
+            <div class="container">
+                <div class="row">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="col-12 col-md-6">
+                        <img src="images/agility.png" class="img-fluid"/>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-4 text-center">Agility</h4>
+                            <p>Our agility course is designed to challenge and stimulate dogs both mentally and physically. It includes a variety of obstacles such as tunnels, jumps, and weave poles.</p>
+                        </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
         </div>
-
         
     </body>
 
-    <script src="about.js"></script>
 
+    <script src="about.js"></script>
+<footer>
+    <div class="footer container-fluid text-center p-4" style="background:linear-gradient(45deg,#82006a,#c2185b); color:white;">
+        <h1> Barks & Recreation </h1>
+        <p> Training, walking, doggie daycare, and more! </p>
+    </div>
+</footer>
 </html>
