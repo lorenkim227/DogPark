@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> <!-- charset -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- viewport -->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" /> <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> <!-- Icons library -->
+    </head>
+    <body>
+        <header class="p-5 bg-primary text-white text-center">
+            <div class="container">
+                <h1> CS456 Web Programming App </h1>
+            </div>
+        </header> <!-- Do not confuse <header> (semantic div) with <head> -->
+
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"> <i class="bi bi-house-fill"></i> Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto w-100 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="userpage.html">Users</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+
+                    <li class="nav-item dropdown ms-auto">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end ms-auto">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>    
+        
+        <div class="container d-flex flex-column min-vh-100">
+            <div class="row mt-2">
+                <div class="col-6 col-md-3">
+                    <h2> CRUD Users </h2>
+                </div>
+                <div class="col-6 col-md-3">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userFormModal" onclick="resetForm();">
+                     <i class="bi bi-person-plus-fill"></i> New User 
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <td>  </td>
+                                    <th> ID </th>
+                                    <th> Name </th>
+                                    <th> Login </th>
+                                    <th> Permission </th>
+                                </tr>
+                            </thead>
+                            <tbody id="userdata">
+                                <!-- The <tr> below does nothing. 
+                                    It is just an example for us to create HTML and see how it looks before creating Javascript to generate it.
+                                    -->
+                                <tr>
+                                    <td> </td>
+                                    <td> id value </td>
+                                    <td> name value </td>
+                                    <td> login value</td>
+                                    <td> permission value </td>
+                                </tr>
+                                <!-- end of user data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- MODAL for Creating a new User -->
+        <div class="modal" id="userFormModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">User Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="userform" method="post" action="http://localhost:4000/user" class="was-validated">
+                <div class="modal-body">
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_id"> ID: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="text" name="txt_id" id="txt_id" placeholder="Auto generated" readonly />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+                    
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_name"> Name: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="text" name="txt_name" id="txt_name" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_login"> Login: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="email" name="txt_login" id="txt_login" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_password"> Password: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="password" name="txt_password" id="txt_password" minlength="6" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_conf"> Confirm Pwd: </label>
+      <div class="col-12 col-md"> 
+         <input class="form-control" type="password" name="txt_conf" id="txt_conf" minlength="6" required />
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+   <div class="row mb-2"> 
+      <label class="col-form-label col-md-3" for="txt_permission"> Permission: </label>
+      <div class="col-12 col-md"> 
+          <select name="txt_permission" id="txt_permission" class="form-control">
+             <option value="2"> Common </option>
+             <option value="1"> Admin </option>
+          </select>
+      </div>
+   </div> <!-- similar for the others (login,pwd,perm) -->
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-warning" >Clear</button>
+                    <button type="submit" class="btn btn-primary" onclick="return checkPasswords();"> Save </button>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!-- end of modal code -->
+
+        <footer class="bg-dark text-white p-2">
+            <div class="container text-center">
+                CS456 - Example App - MIT License
+            </div>
+        </footer>
+
+        <!-- It is a common thing on wep pages to import JS at the bottom of the page. That way your website will "load" its visual elements before it gets "stuck" on the code. -->
+        <!-- Bootstrap Javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <!-- Other JS scripts also here -->
+        <script>
+            let lstUsers = [];
+            async function readUserData(){
+                let response = await fetch('/user'); //gets data
+                lstUsers = await response.json(); //converts to JavaScript Object
+                
+                let output = "";
+                for(let i=0; i<lstUsers.length; i++){
+                    output+= ` 
+                    <tr>
+                        <td>
+                            <a onclick="editUserModal(${i})" data-bs-toggle="modal" data-bs-target="#userFormModal"><i class="bi bi-pencil-square text-primary"></i></a>  
+                            &nbsp; <!-- blank space -->
+                            
+                        <a href="/deleteuser/${ lstUsers[i]._id }" onclick="return areYouSure();"><i class="bi bi-trash-fill text-danger"></i></a>  </td> 
+                        <td> ${ lstUsers[i]._id } </td>
+                        <td> ${ lstUsers[i].name } </td>
+                        <td> ${ lstUsers[i].login} </td>
+                        <td> ${ lstUsers[i].permission == 1 ? "Admin" : "Common" } </td>
+                    </tr>
+                    `;
+                }
+                
+                document.getElementById("userdata").innerHTML = output;
+            }
+
+            readUserData(); // We also need to call the function
+        </script>
+        <script>
+            function checkPasswords(){
+                let pwd = document.getElementById("txt_password").value;
+                let conf = document.getElementById("txt_conf").value;
+
+                if( pwd !== conf){
+                    window.alert("Passwords do not match.");
+                    return false;
+                }
+                return true;
+            }
+            function areYouSure(){
+                return window.confirm("Are you sure you want to delete this user?");
+            }
+            function editUserModal(index){
+                document.getElementById("txt_id").value = lstUsers[index]._id;
+                document.getElementById("txt_name").value = lstUsers[index].name;
+                document.getElementById("txt_login").value = lstUsers[index].login;
+                document.getElementById("txt_password").value = lstUsers[index].password;            
+                document.getElementById("txt_permission").value = lstUsers[index].permission;
+            }
+            function resetForm(){
+                document.getElementById("userform").reset();
+            }
+        </script>
+
+    </body>
+</html>        
