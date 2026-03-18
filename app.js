@@ -13,11 +13,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.get('/user', userCont.getAll);
-app.get('/user/:id', userCont.getById);
-app.post('/user', userCont.postCreateOrUpdate);
-app.post('/updateuser', userCont.postCreateOrUpdate);
-app.put('/user', userCont.postCreateOrUpdate);
-app.delete('/user/:id', userCont.remove);
-app.get('/deleteuser/:id', userCont.remove);
+app.get('/user/:id', userCont.get);
+app.post('/user', userCont.postCreateUpdate);
+app.post('/updateuser', userCont.postCreateUpdate);
+app.put('/user', userCont.postCreateUpdate);
+app.delete('/user/:id', userCont.getDelete);
+app.get('/deleteuser/:id', userCont.getDelete);
 
 exports.app = app; 
