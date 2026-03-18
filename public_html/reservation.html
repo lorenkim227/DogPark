@@ -1,103 +1,238 @@
+<!-- reservation.html -->
+
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Reservation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" /> <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-</head>
+    <head>
+        <meta charset="utf-8" /> <!-- charset -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- viewport -->
 
-<body>
-    <div class="container text-center">
-    </div>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid"> 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainMenu">
-            <ul class="navbar-nav">
-                <li class="nav-item"> <a href="index.html" class="nav-link"><span class="bi bi-house"></span> Home </a> </li> 
-                <li class="nav-item"> <a href="about.html" class="nav-link"><span class="bi bi-pen"></span> About </a> </li>
-                <li class="nav-item"> <a href="reservation.html" class="nav-link"><span class="bi bi-calendar"></span>  Book </a> </li>
-                <li class="nav-item"> <a href="userpage.html" class="nav-link"><span class="bi bi-person"></span>  Profile </a> </li>
-              </ul>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" /> <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"> <!-- Icons library -->
+    </head>
+    <body>
+        <div class="container text-center">
         </div>
-    </nav>
-    </dic>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid"> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"> <a href="index.html" class="nav-link"><span class="bi bi-house"></span> Home </a> </li> 
+                    <li class="nav-item"> <a href="about.html" class="nav-link"><span class="bi bi-pen"></span> About </a> </li>
+                    <li class="nav-item"> <a href="reservation.html" class="nav-link"><span class="bi bi-calendar"></span>  Book </a> </li>
+                    <li class="nav-item"> <a href="userpage.html" class="nav-link"><span class="bi bi-person"></span>  Profile </a> </li>
+                  </ul>
+            </div>
+        </nav>
+        </div>
+        <header class="p-3 text-white text-center rounded" style="background:linear-gradient(45deg,#82006a,#c2185b);;">
+            <div class="container">
+            <h1 class="display-10"> Make a Dog Reservation </h1>
+            <p> Training, walking, doggie daycare, and more! </p>
+            </div>
+        </header> <!-- Do not confuse <header> (semantic div) with <head> -->
     
-    <header class="p-3 text-white text-center rounded" style="background:linear-gradient(45deg,#82006a,#c2185b);;">
-        <div class="container">
-        <h1 class="display-10"> Make a Dog Reservation </h1>
-        <p> Training, walking, doggie daycare, and more! </p>
+        
+        <div class="container d-flex flex-column min-vh-100">
+            <div class="row mt-2">
+                <div class="col-6 col-md-3">
+                    <h2> CRUD Reservation </h2>
+                </div>
+                <div class="col-6 col-md-3">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reservationFormModal" onclick="resetForm();">
+                     <i class="bi bi-pen"></i> New Reservation 
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <td>  </td>
+                                    <th> ID </th>
+                                    <th> Name </th>
+                                    <th> Email </th>
+                                    <th> Date </th>
+                                    <th> Time </th>
+                                    <th> Dogs </th>
+                                    <th> Puppy </th>
+                                    <th> Senior </th>
+                                    <th> Reservation Type </th>
+                                    <th> Dog Info </th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservationdata">
+                                <!-- The <tr> below does nothing. 
+                                    It is just an example for us to create HTML and see how it looks before creating Javascript to generate it.
+                                    -->
+                                <tr>
+                                    <td> </td>
+                                    <td> id value </td>
+                                    <td> name value </td>
+                                    <td> email value</td>
+                                    <td> date value </td>
+                                    <td> time value </td>
+                                    <td> dogs value </td>
+                                    <td> puppy value </td>
+                                    <td> senior value </td>
+                                    <td> reservation type value </td>
+                                    <td> dog info value </td>
+                                </tr>
+                                <!-- end of user data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </header> <!-- Do not confuse <header> (semantic div) with <head> -->
+        <!-- MODAL for Creating a new User -->
+        <div class="modal" id="reservationFormModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reservation Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <form id="reservationform" action="/submit_reservation" method="post">
+                        <input type="hidden" id="_id" name="_id">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required><br><br>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required><br><br>
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required><br><br>
+                        <label for="time">Time:</label>
+                        <input type="time" id="time" name="time" required><br><br>
+                        <label for="dogs">Number of Dogs:</label>
+                        <input type="range" id="dogs" name="dogs" min="1" max="10" required><br><br>
 
-    <div class="container mt-5">
-        <div class="card p-4">
-            <h4 class="mb-4 text-center">Reservation Details</h4>
-                <form action="/submit_reservation" method="post">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required><br><br>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" required><br><br>
-                    <label for="time">Time:</label>
-                    <input type="time" id="time" name="time" required><br><br>
-                    <label for="dogs">Number of Dogs:</label>
-                    <input type="range" id="dogs" name="dogs" min="1" max="10" required><br><br>
+                        <!-- Stack Overflow and W3 to display the range number -->
+                        <span id="dogCount">5</span>  
+                        <script>
+                            const dogRange = document.getElementById('dogs');
+                            const dogCount = document.getElementById('dogCount');
+                            dogRange.addEventListener('input', () => {
+                                dogCount.textContent = dogRange.value;
+                            });
+                        </script>
 
-                    <!-- Stack Overflow and W3 to display the range number -->
-                    <span id="dogCount">5</span>  
-                    <script>
-                        const dogRange = document.getElementById('dogs');
-                        const dogCount = document.getElementById('dogCount');
-                        dogRange.addEventListener('input', () => {
-                            dogCount.textContent = dogRange.value;
-                        });
-                    </script>
+                        <br/>
+                        <br/>
 
-                    <br/>
-                    <br/>
+                        <input type="checkbox" name="puppy" unchecked />
+                        <label for="puppy">Click here if any dogs are puppies (younger than 6 months).</label>
+                        <br/>
+                        <br/>
 
-                    <input type="checkbox" name="chk_puppy" unchecked />
-                    <label for="chk_puppy">Click here if any dogs are puppies (younger than 6 months).</label>
-                    <br/>
-                    <br/>
+                        <input type="checkbox" name="senior" unchecked />
+                        <label for="senior">Click here if any dogs are seniors (older than 8 years).</label>
+                        <br/>
+                        <br/>
 
-                    <input type="checkbox" name="chk_senior" unchecked />
-                    <label for="chk_senior">Click here if any dogs are seniors (older than 8 years).</label>
-                    <br/>
-                    <br/>
+                        <label for="restype">Select a Reservation Type:</label>
+                        <br/>
+                        <input type="radio" name="restype" id="rd1" value="trainer"/>
+                        <label for="rd1">Trainer</label>
+                        <input type="radio" name="restype" id="rd2" value="walker"/>
+                        <label for="rd2">Walker</label>
+                        <input type="radio" name="restype" id="rd3" value="daycare" />
+                        <label for="rd3">Doggie Day Care</label>
+                        <br/>
+                        <br/>
 
-                    <label for="res">Select a Reservation Type:</label>
-                    <br/>
-                    <input type="radio" name="restype" id="rd1" value="trainer"/>
-                    <label for="rd1">Trainer</label>
-                    <input type="radio" name="restype" id="rd2" value="walker"/>
-                    <label for="rd2">Walker</label>
-                    <input type="radio" name="restype" id="rd3" value="daycare" />
-                    <label for="rd3">Doggie Day Care</label>
-                    <br/>
-                    <br/>
+                        <label for="doginfo">Enter dog names, ages, and other info:</label>
+                        <textarea rows="5" cols="40" name="doginfo" id="doginfo"></textarea>
+                        <br/>
+                        <br/>
+                 
 
-                    <label for="info">Enter dog names, ages, and other info:</label>
-                    <textarea rows="5" cols="40" name="text" id="doginfo"></textarea>
-                    <br/>
-                    <br/>
-
-                    <input type="submit" class="btn btn-primary" value="Submit Reservation">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-warning" >Clear</button>
+                    <button type="submit" class="btn btn-primary"> Submit </button>
+                </div>
                 </form>
+                </div>
+            </div>
         </div>
-    </div>
-    </br>
-    </br>
-</body>
-</footer>
-    <div class="footer container-fluid text-center p-4" style="background:linear-gradient(45deg,#82006a,#c2185b); color:white;">
-        <h1> Barks & Recreation </h1>
-        <p> Training, walking, doggie daycare, and more! </p>
-    </div>
-</footer>
-</html>
+        <!-- end of modal code -->
+
+    </footer>
+        <div class="footer container-fluid text-center p-4" style="background:linear-gradient(45deg,#82006a,#c2185b); color:white;">
+            <h1> Barks & Recreation </h1>
+            <p> Training, walking, doggie daycare, and more! </p>
+        </div>
+    </footer>
+
+        <!-- It is a common thing on wep pages to import JS at the bottom of the page. That way your website will "load" its visual elements before it gets "stuck" on the code. -->
+        <!-- Bootstrap Javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <!-- Other JS scripts also here -->
+        <script>
+            let lstReservation = [];
+            async function readReservationData(){
+                let response = await fetch('/reservation'); //gets data
+                lstReservation = await response.json(); //converts to JavaScript Object
+                
+                let output = "";
+                for(let i=0; i<lstReservation.length; i++){
+                    output+= ` 
+                    <tr>
+                        <td>
+                            <a onclick="editReservationModal(${i})" data-bs-toggle="modal" data-bs-target="#reservationFormModal"><i class="bi bi-pencil-square text-primary"></i></a>  
+                            &nbsp; <!-- blank space -->
+                            
+                        <a href="/deletereservation/${ lstReservation[i]._id }" onclick="return areYouSure();"><i class="bi bi-trash-fill text-danger"></i></a>  </td> 
+                        <td> ${ lstReservation[i]._id } </td>
+                        <td> ${ lstReservation[i].name } </td>
+                        <td> ${ lstReservation[i].email } </td>
+                        <td> ${ lstReservation[i].date } </td>
+                        <td> ${ lstReservation[i].time } </td>
+                        <td> ${ lstReservation[i].dogs } </td>
+                        <td> ${ lstReservation[i].puppy ? "Yes" : "No" } </td>
+                        <td> ${ lstReservation[i].senior ? "Yes" : "No" } </td>
+                        <td> ${ lstReservation[i].restype } </td>
+                        <td> ${ lstReservation[i].doginfo } </td>
+                    </tr>
+                    `;
+                }
+                
+                document.getElementById("reservationdata").innerHTML = output;
+            }
+
+            readReservationData(); // We also need to call the function
+        </script>
+        <script>
+            function checkPasswords(){
+                return true;
+            }
+            function areYouSure(){
+                return window.confirm("Are you sure you want to delete this reservation?");
+            }
+            function editReservationModal(index){
+                document.getElementById("_id").value = lstReservation[index]._id;
+                document.getElementById("name").value = lstReservation[index].name;
+                document.getElementById("email").value = lstReservation[index].email;
+                document.getElementById("date").value = lstReservation[index].date;
+                document.getElementById("time").value = lstReservation[index].time;
+                document.getElementById("dogs").value = lstReservation[index].dogs;
+                document.getElementById("puppy").checked = lstReservation[index].puppy;
+                document.getElementById("senior").checked = lstReservation[index].senior;
+                document.getElementById("restype").value = lstReservation[index].restype;
+                document.getElementById("doginfo").value = lstReservation[index].doginfo;
+            }
+            function resetForm(){
+                document.getElementById("reservationform").reset();
+            }
+        </script>
+
+    </body>
+</html>        

@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-6 col-md-3">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userFormModal" onclick="resetForm();">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reservationFormModal" onclick="resetForm();">
                      <i class="bi bi-pen"></i> New Reservation 
                     </button>
                 </div>
@@ -91,7 +91,7 @@
 
         </div>
         <!-- MODAL for Creating a new User -->
-        <div class="modal" id="userFormModal" tabindex="-1">
+        <div class="modal" id="reservationFormModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -175,7 +175,7 @@
         <!-- Other JS scripts also here -->
         <script>
             let lstReservation = [];
-            async function readUserData(){
+            async function readReservationData(){
                 let response = await fetch('/reservation'); //gets data
                 lstReservation = await response.json(); //converts to JavaScript Object
                 
@@ -184,14 +184,20 @@
                     output+= ` 
                     <tr>
                         <td>
-                            <a onclick="editUserModal(${i})" data-bs-toggle="modal" data-bs-target="#userFormModal"><i class="bi bi-pencil-square text-primary"></i></a>  
+                            <a onclick="editReservationModal(${i})" data-bs-toggle="modal" data-bs-target="#reservationFormModal"><i class="bi bi-pencil-square text-primary"></i></a>  
                             &nbsp; <!-- blank space -->
                             
-                        <a href="/deleteuser/${ lstReservation[i]._id }" onclick="return areYouSure();"><i class="bi bi-trash-fill text-danger"></i></a>  </td> 
+                        <a href="/deletereservation/${ lstReservation[i]._id }" onclick="return areYouSure();"><i class="bi bi-trash-fill text-danger"></i></a>  </td> 
                         <td> ${ lstReservation[i]._id } </td>
                         <td> ${ lstReservation[i].name } </td>
-                        <td> ${ lstReservation[i].login} </td>
-                        <td> ${ lstReservation[i].permission == 1 ? "Admin" : "Common" } </td>
+                        <td> ${ lstReservation[i].email } </td>
+                        <td> ${ lstReservation[i].date } </td>
+                        <td> ${ lstReservation[i].time } </td>
+                        <td> ${ lstReservation[i].dogs } </td>
+                        <td> ${ lstReservation[i].puppy ? "Yes" : "No" } </td>
+                        <td> ${ lstReservation[i].senior ? "Yes" : "No" } </td>
+                        <td> ${ lstReservation[i].restype } </td>
+                        <td> ${ lstReservation[i].doginfo } </td>
                     </tr>
                     `;
                 }
@@ -199,26 +205,26 @@
                 document.getElementById("reservationdata").innerHTML = output;
             }
 
-            readUserData(); // We also need to call the function
+            readReservationData(); // We also need to call the function
         </script>
         <script>
             function checkPasswords(){
                 return true;
             }
             function areYouSure(){
-                return window.confirm("Are you sure you want to delete this user?");
+                return window.confirm("Are you sure you want to delete this reservation?");
             }
-            function editUserModal(index){
-                document.getElementById("txt_id").value = lstReservation[index]._id;
-                document.getElementById("txt_name").value = lstReservation[index].name;
-                document.getElementById("txt_email").value = lstReservation[index].email;
-                document.getElementById("txt_date").value = lstReservation[index].date;
-                document.getElementById("txt_time").value = lstReservation[index].time;
-                document.getElementById("txt_dogs").value = lstReservation[index].dogs;
-                document.getElementById("txt_puppy").checked = lstReservation[index].puppy;
-                document.getElementById("txt_senior").checked = lstReservation[index].senior;
-                document.getElementById("txt_restype").value = lstReservation[index].restype;
-                document.getElementById("txt_doginfo").value = lstReservation[index].doginfo;
+            function editReservationModal(index){
+                document.getElementById("id").value = lstReservation[index]._id;
+                document.getElementById("name").value = lstReservation[index].name;
+                document.getElementById("email").value = lstReservation[index].email;
+                document.getElementById("date").value = lstReservation[index].date;
+                document.getElementById("time").value = lstReservation[index].time;
+                document.getElementById("dogs").value = lstReservation[index].dogs;
+                document.getElementById("puppy").checked = lstReservation[index].puppy;
+                document.getElementById("senior").checked = lstReservation[index].senior;
+                document.getElementById("restype").value = lstReservation[index].restype;
+                document.getElementById("doginfo").value = lstReservation[index].doginfo;
             }
             function resetForm(){
                 document.getElementById("reservationform").reset();

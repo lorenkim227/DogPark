@@ -1,3 +1,5 @@
+// server.js
+
 const expApp = require('./app.js');
 let hostname = 'localhost'; //address for this server
 let port = 4000; //change the port if already in use

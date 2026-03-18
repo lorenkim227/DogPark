@@ -1,3 +1,5 @@
+// ReservationController.js
+
 const dao = require('../model/ReservationDaoMem');
 
 exports.getAll = function(req,res){
@@ -7,13 +9,13 @@ exports.getAll = function(req,res){
 };    
 
 exports.get = function(req,res){
-    let uid = parseInt( req.params.uid ); //takes the URL parameter
+    let uid = parseInt( req.params.id ); //takes the URL parameter
 
-    let user = dao.read(uid);
+    let reservation = dao.read(uid);
 
-    if(user != null){ // requested user exists
+    if(reservation != null){ // requested user exists
         res.status(200);
-        res.send(user); //send the user data
+        res.send(reservation); //send the user data
     } else { // user id does not exists
         res.status(404);  // error
         res.send({msg:'User with this ID does not exists'});
@@ -23,23 +25,20 @@ exports.get = function(req,res){
 
 exports.postCreateUpdate = function(req,res){
 
-    let uname = req.body.txt_name; //always red.body.<inputName>
-    let uemail = req.body.txt_email;
-    let udate = req.body.txt_date;
-    let utime = req.body.txt_time;
-    let udogs = parseInt(req.body.txt_dogs);
-    let upuppy = req.body.txt_puppy === 'false';
-    let usenior = req.body.txt_senior === 'false';
-    let urestype = req.body.txt_restype;
-    let udoginfo = req.body.txt_doginfo;
-    if (req.body.txt_permission ){
-        uperm = parseInt( req.body.txt_permission );
-    }
+    let uname = req.body.name; //always red.body.<inputName>
+    let uemail = req.body.email;
+    let udate = req.body.date;
+    let utime = req.body.time;
+    let udogs = parseInt(req.body.dogs);
+    let upuppy = req.body.puppy === 'on'; // realized checkbox is on and not false
+    let usenior = req.body.senior === 'on';
+    let urestype = req.body.restype;
+    let udoginfo = req.body.doginfo;
 
-    if(req.body.txt_id && req.body.txt_id !== ""){
+    if(req.body._id && req.body._id !== ""){
         // update operation
         console.log("Update...");
-        let uid = parseInt( req.body.txt_id);
+        let uid = parseInt( req.body._id);
         let newuser = {_id: uid, name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
         dao.update(newuser);
 

@@ -4,7 +4,7 @@ let lstUsers = [
     {_id:3,name:'Jane Doe', login:'janed@compuserve.com', password:'123456', permission:2}
 ];
 
-exports.realAll = function(){
+exports.readAll = function(){
     return lstUsers;
 }
 
