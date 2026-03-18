@@ -41,7 +41,7 @@ exports.create = function(name, email, date, time, dogs, puppy, senior, restype,
     if(lstReservations.length > 0){
         newId = lstReservations[lstReservations.length-1]._id + 1; //get the last id and add 1
     }
-    let newUser = {_id:newId, name:name, login:login, password:password, permission:permission};
+    let newUser = {_id:newId, name:name, email:email, date:date, time:time, dogs:dogs, puppy:puppy, senior:senior, restype:restype, doginfo:doginfo}; 
     lstReservations.push(newUser);
     return lstReservations;
 }
@@ -50,9 +50,14 @@ exports.update = function(name, email, date, time, dogs, puppy, senior, restype,
     let user = this.getById(uid);
     if(user != null){
         user.name = name;
-        user.login = login;
-        user.password = password;
-        user.permission = permission;
+        user.email = email;
+        user.date = date;
+        user.time = time;
+        user.dogs = dogs;
+        user.puppy = puppy;
+        user.senior = senior;
+        user.restype = restype;
+        user.doginfo = doginfo;
     }
     return user;
 }

@@ -24,9 +24,14 @@ exports.get = function(req,res){
 exports.postCreateUpdate = function(req,res){
 
     let uname = req.body.txt_name; //always red.body.<inputName>
-    let ulogin = req.body.txt_login;
-    let upwd = req.body.txt_password;
-    let uperm = 2; 
+    let uemail = req.body.txt_email;
+    let udate = req.body.txt_date;
+    let utime = req.body.txt_time;
+    let udogs = parseInt(req.body.txt_dogs);
+    let upuppy = req.body.txt_puppy === 'false';
+    let usenior = req.body.txt_senior === 'false';
+    let urestype = req.body.txt_restype;
+    let udoginfo = req.body.txt_doginfo;
     if (req.body.txt_permission ){
         uperm = parseInt( req.body.txt_permission );
     }
@@ -35,12 +40,12 @@ exports.postCreateUpdate = function(req,res){
         // update operation
         console.log("Update...");
         let uid = parseInt( req.body.txt_id);
-        let newuser = {_id: uid, name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        let newuser = {_id: uid, name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
         dao.update(newuser);
 
     } else {
         // create/insert operation
-        let newuser = {name: uname, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        let newuser = {name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
         dao.create(newuser);
     }
 
