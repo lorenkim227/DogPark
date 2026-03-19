@@ -48,14 +48,14 @@ exports.postCreateUpdate = function(req,res){
         dao.create(newuser);
     }
 
-    res.redirect("reservation.html"); //redirects output to this webpage
+    res.redirect("/reservation.html"); //redirects output to this webpage
 }
 
 exports.getDelete = function(req,res){
-    let uid = parseInt( req.params.uid ); //takes the URL parameter
+    let uid = parseInt( req.params.id ); //takes the URL parameter
 
     dao.del(uid);
     
-    res.redirect("../reservation.html")
+    res.redirect("/reservation.html")
 
 };

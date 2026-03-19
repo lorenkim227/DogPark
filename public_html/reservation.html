@@ -100,7 +100,7 @@
                     <h5 class="modal-title">Reservation Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                    <form id="reservationform" action="/submit_reservation" method="post">
+                    <form id="reservationform" action="http://localhost:4000/reservation" method="post">
                         <input type="hidden" id="_id" name="_id">
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" required><br><br>
@@ -126,12 +126,12 @@
                         <br/>
                         <br/>
 
-                        <input type="checkbox" name="puppy" unchecked />
+                        <input type="checkbox" id="puppy" name="puppy" unchecked />
                         <label for="puppy">Click here if any dogs are puppies (younger than 6 months).</label>
                         <br/>
                         <br/>
 
-                        <input type="checkbox" name="senior" unchecked />
+                        <input type="checkbox" id="senior" name="senior" unchecked />
                         <label for="senior">Click here if any dogs are seniors (older than 8 years).</label>
                         <br/>
                         <br/>
@@ -157,7 +157,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     <button type="reset" class="btn btn-warning" >Clear</button>
-                    <button type="submit" class="btn btn-primary"> Submit </button>
+                    <button type="submit" class="btn btn-primary onclick="return checkPasswords();> Submit </button>
                 </div>
                 </form>
                 </div>
@@ -226,8 +226,12 @@
                 document.getElementById("dogs").value = lstReservation[index].dogs;
                 document.getElementById("puppy").checked = lstReservation[index].puppy;
                 document.getElementById("senior").checked = lstReservation[index].senior;
-                document.getElementById("restype").value = lstReservation[index].restype;
+                // document.getElementById("restype").value = lstReservation[index].restype;
                 document.getElementById("doginfo").value = lstReservation[index].doginfo;
+
+                document.getElementById("rd1").checked = lstReservation[index].restype === "trainer";
+                document.getElementById("rd2").checked = lstReservation[index].restype === "walker";
+                document.getElementById("rd3").checked = lstReservation[index].restype === "daycare";
             }
             function resetForm(){
                 document.getElementById("reservationform").reset();
