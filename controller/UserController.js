@@ -1,4 +1,4 @@
-const dao = require('../model/UserDaoMem');
+const dao = require('../model/UserDaoMongoose');
 const passutil = require('../util/PasswordUtil');
 
 exports.getAll = async function(req,res){
@@ -7,10 +7,10 @@ exports.getAll = async function(req,res){
     res.end(); // Ends the response (optional but important)
 };    
 
-exports.get = function(req,res){
+exports.get = async function(req,res){
     let uid = parseInt( req.params.uid ); //takes the URL parameter
 
-    let user = dao.read(uid);
+    let user = await dao.read(uid);
 
     if(user != null){ // requested user exists
         res.status(200);
@@ -26,7 +26,7 @@ exports.postCreateUpdate = async function(req,res){
 
     let uname = req.body.txt_name; //always red.body.<inputName>
     let ulogin = req.body.txt_login;
-    let upwd = passutil.hashPassword(req.body.txt_password);
+    let upwd = passutil.hashPassword( req.body.txt_password );
     let uperm = 2; 
     if (req.body.txt_permission ){
         uperm = parseInt( req.body.txt_permission );
@@ -36,23 +36,39 @@ exports.postCreateUpdate = async function(req,res){
         // update operation
         console.log("Update...");
         let uid = parseInt( req.body.txt_id);
-        let newuser = {_id: uid, name: uname, password: upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        let newuser = {_id: uid, name: uname, password:upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
         await dao.update(newuser);
 
     } else {
         // create/insert operation
-        let newuser = {name: uname, password: upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
+        let newuser = {name: uname, password:upwd, login: ulogin, permission: uperm}; //creates a user object (like the ones we have on lstUsers array)
         await dao.create(newuser);
     }
 
     res.redirect("userpage.html"); //redirects output to this webpage
 }
 
-exports.getDelete = function(req,res){
+exports.getDelete = async function(req,res){
     let uid = parseInt( req.params.uid ); //takes the URL parameter
 
-    dao.del(uid);
+    await dao.del(uid);
     
     res.redirect("../userpage.html")
-
 };
+
+exports.postLogin = async function(req,res){
+
+    let ulogin = req.body.txt_login;
+    let upass = req.body.txt_pass;
+
+    let user = await dao.login(ulogin);
+
+    if(user != null && passutil.comparePassword(upass, user.password) ){ // requested user exists and password matches
+        user.password = null;
+        req.session.user = user;
+        res.redirect("index.html"); 
+    } else { 
+        res;redirect("login.html?error=1");  
+    }
+    res.end();
+}

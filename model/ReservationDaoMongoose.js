@@ -13,25 +13,38 @@ const reservationSchema = new mongoose.Schema({
     creation: {type: Date, default: Date.now}
 });
 
-const Reservation = mongoose.model('Reservation', reservationSchema);
-
-exports.create = async function(reservation){
-    let newReservation = new Reservation(reservation);
-    await newReservation.save();
-}
+const reservationModel = mongoose.model('reservation', reservationSchema);
 
 exports.readAll = async function(){
-    return await Reservation.find({});
+    const lstReservations = await reservationModel.find();
+    // Later try: find().sort({name:'asc'}).skip(0).limit(5);
+    return lstReservations;
 }
 
 exports.read = async function(uid){
-    return await Reservation.findById(uid);
+    const reservation = await reservationModel.findById(uid);
+    return reservation;
+}
+
+exports.create = async function(reservation){
+    const mongoreservation = new reservationModel(reservation);
+    await mongoreservation.save();
+    return mongoreservation;
 }
 
 exports.update = async function(reservation){
-    await Reservation.findByIdAndUpdate(reservation._id, reservation);
+    const updatedreservation = await reservationModel.findByIdAndUpdate(reservation._id, reservation, {new: true});
+    return updatedreservation;
+    //Left as an exercise 1 
 }
 
 exports.del = async function(uid){
-    await Reservation.findByIdAndDelete(uid);
+    const reservation = await reservationModel.findByIdAndDelete(uid);
+    return reservation;
+}
+
+exports.deleteAll = async function(check){
+    if(check === "test"){
+        await reservationModel.deleteMany();
+    }
 }

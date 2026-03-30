@@ -1,32 +1,50 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: String,
-    login: {type: String, required: true, alias: 'email'}, // maybe add unique: true
+    login:{type: String, required: true, alias:'email' },
     password: String,
     permission: Number,
-    creation: {type: Date, default: Date.now}
+    creation: {type: Date, default: Date.now }
 });
 
-const User = mongoose.model('User', userSchema);
-
-exports.create = async function(user){
-    let newUser = new User(user);
-    await newUser.save();
-}
+const userModel = mongoose.model('user', userSchema);
 
 exports.readAll = async function(){
-    return await User.find({});
+    const lstUsers = await userModel.find();
+    // Later try: find().sort({name:'asc'}).skip(0).limit(5);
+    return lstUsers;
 }
 
 exports.read = async function(uid){
-    return await User.findById(uid);
+    const user = await userModel.findById(uid);
+    return user;
+}
+
+exports.create = async function(user){
+    const mongouser = new userModel(user);
+    await mongouser.save();
+    return mongouser;
 }
 
 exports.update = async function(user){
-    await User.findByIdAndUpdate(user._id, user);
+    const updateduser = await userModel.findByIdAndUpdate(user._id, user, {new: true});
+    return updateduser;
+    //Left as an exercise 1 
 }
 
 exports.del = async function(uid){
-    await User.findByIdAndDelete(uid);
+    const user = await userModel.findByIdAndDelete(uid);
+    return user;
+}
+
+exports.deleteAll = async function(check){
+    if(check === "test"){
+        await userModel.deleteMany();
+    }
+}
+
+exports.login = async function(ulogin){
+    const user = await userModel.findOne({login: ulogin});
+    return user;
 }

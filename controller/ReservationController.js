@@ -18,7 +18,7 @@ exports.get = function(req,res){
         res.send(reservation); //send the user data
     } else { // user id does not exists
         res.status(404);  // error
-        res.send({msg:'User with this ID does not exists'});
+        res.send({msg:'Reservation with this ID does not exists'});
     }
     res.end();
 }
