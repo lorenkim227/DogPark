@@ -1,17 +1,17 @@
 // ReservationController.js
 
-const dao = require('../model/ReservationDaoMem');
+const dao = require('../model/ReservationDaoMongoose');
 
-exports.getAll = function(req,res){
+exports.getAll = async function(req,res){
     res.status(200); // Ok status
-    res.send( dao.readAll() ); // Sending the array
+    res.send( await dao.readAll() ); // Sending the array
     res.end(); // Ends the response (optional but important)
 };    
 
-exports.get = function(req,res){
+exports.get = async function(req,res){
     let uid = parseInt( req.params.id ); //takes the URL parameter
 
-    let reservation = dao.read(uid);
+    let reservation = await dao.read(uid);
 
     if(reservation != null){ // requested user exists
         res.status(200);
@@ -23,7 +23,7 @@ exports.get = function(req,res){
     res.end();
 }
 
-exports.postCreateUpdate = function(req,res){
+exports.postCreateUpdate = async function(req,res){
 
     let uname = req.body.name; //always red.body.<inputName>
     let uemail = req.body.email;
@@ -40,21 +40,21 @@ exports.postCreateUpdate = function(req,res){
         console.log("Update...");
         let uid = parseInt( req.body._id);
         let newuser = {_id: uid, name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
-        dao.update(newuser);
+        await dao.update(newuser);
 
     } else {
         // create/insert operation
         let newuser = {name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
-        dao.create(newuser);
+        await dao.create(newuser);
     }
 
     res.redirect("/reservation.html"); //redirects output to this webpage
 }
 
-exports.getDelete = function(req,res){
+exports.getDelete = async function(req,res){
     let uid = parseInt( req.params.id ); //takes the URL parameter
 
-    dao.del(uid);
+    await dao.del(uid);
     
     res.redirect("/reservation.html")
 
