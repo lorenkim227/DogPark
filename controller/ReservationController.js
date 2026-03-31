@@ -9,7 +9,7 @@ exports.getAll = async function(req,res){
 };    
 
 exports.get = async function(req,res){
-    let uid = parseInt( req.params.id ); //takes the URL parameter
+    let uid = req.params.id; //takes the URL parameter
 
     let reservation = await dao.read(uid);
 
@@ -38,7 +38,7 @@ exports.postCreateUpdate = async function(req,res){
     if(req.body._id && req.body._id !== ""){
         // update operation
         console.log("Update...");
-        let uid = parseInt( req.body._id);
+        let uid = req.body._id;
         let newreservation = {_id: uid, name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a newreservation object (like the ones we have on array)
         await dao.update(newreservation);
 
@@ -52,7 +52,7 @@ exports.postCreateUpdate = async function(req,res){
 }
 
 exports.getDelete = async function(req,res){
-    let uid = parseInt( req.params.id ); //takes the URL parameter
+    let uid = req.params.id; //takes the URL parameter
 
     await dao.del(uid);
     
