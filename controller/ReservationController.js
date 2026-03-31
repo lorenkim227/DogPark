@@ -13,10 +13,10 @@ exports.get = async function(req,res){
 
     let reservation = await dao.read(uid);
 
-    if(reservation != null){ // requested user exists
+    if(reservation != null){ // requested reservation exists
         res.status(200);
-        res.send(reservation); //send the user data
-    } else { // user id does not exists
+        res.send(reservation); //send the reservation data
+    } else { // reservation id does not exists
         res.status(404);  // error
         res.send({msg:'Reservation with this ID does not exists'});
     }
@@ -39,16 +39,16 @@ exports.postCreateUpdate = async function(req,res){
         // update operation
         console.log("Update...");
         let uid = parseInt( req.body._id);
-        let newuser = {_id: uid, name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
-        await dao.update(newuser);
+        let newreservation = {_id: uid, name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a newreservation object (like the ones we have on array)
+        await dao.update(newreservation);
 
     } else {
         // create/insert operation
-        let newuser = {name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a user object (like the ones we have on lstUsers array)
-        await dao.create(newuser);
+        let newreservation = {name: uname, email: uemail, date: udate, time: utime, dogs: udogs, puppy: upuppy, senior: usenior, restype: urestype, doginfo: udoginfo}; //creates a newreservation object (like the ones we have on s array)
+        await dao.create(newreservation);
     }
 
-    res.redirect("/reservation.html"); //redirects output to this webpage
+    res.redirect("reservation.html"); //redirects output to this webpage
 }
 
 exports.getDelete = async function(req,res){
@@ -56,6 +56,6 @@ exports.getDelete = async function(req,res){
 
     await dao.del(uid);
     
-    res.redirect("/reservation.html")
+    res.redirect("../reservation.html")
 
 };

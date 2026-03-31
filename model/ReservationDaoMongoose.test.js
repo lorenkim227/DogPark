@@ -67,7 +67,13 @@ test('Update a Reservation', async function(){
     let created = await dao.create(newreservation);
 
     let updatedReservation = {name:"hehe",email:"tes1t@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
-    
+    let updated = await dao.update({_id: created._id, ...updatedReservation});
+    let found = await dao.read(created._id);
+
+    expect(updated._id).toEqual(created._id);
+    expect(updated.name).toEqual(updatedReservation.name);
+    expect(found.name).toEqual(updatedReservation.name);
+
 
 
 });

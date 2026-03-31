@@ -84,7 +84,7 @@
                                     <td> reservation type value </td>
                                     <td> dog info value </td>
                                 </tr>
-                                <!-- end of user data -->
+                                <!-- end of reservation data -->
                             </tbody>
                         </table>
                     </div>
@@ -92,7 +92,7 @@
             </div>
 
         </div>
-        <!-- MODAL for Creating a new User -->
+        <!-- MODAL for Creating a new Reservation -->
         <div class="modal" id="reservationFormModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -100,7 +100,8 @@
                     <h5 class="modal-title">Reservation Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                    <form id="reservationform" action="http://localhost:4000/reservation" method="post">
+                    <form id="reservationform" action="http://localhost:4000/reservation" method="post" class="was-validated">
+                        <div class="modal-body">
                         <input type="hidden" id="_id" name="_id">
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" required><br><br>
@@ -157,7 +158,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     <button type="reset" class="btn btn-warning" >Clear</button>
-                    <button type="submit" class="btn btn-primary onclick="return checkPasswords();> Submit </button>
+                    <button type="submit" class="btn btn-primary" onclick="return checkPasswords();"> Save </button>
                 </div>
                 </form>
                 </div>

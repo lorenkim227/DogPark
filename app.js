@@ -1,6 +1,7 @@
 // app.js
 
 const userCont = require('./controller/UserController');
+const reservationCont = require('./controller/ReservationController');
 const e = require('express');
 const express = require('express');
 const { mongo } = require('mongoose');
@@ -36,12 +37,12 @@ app.delete('/user/:id', userCont.getDelete);
 app.get('/deleteuser/:id', userCont.getDelete);
 app.post('/dologin', userCont.postLogin);
 
-app.get('/reservation', require('./controller/ReservationController').getAll);
-app.get('/reservation/:id', require('./controller/ReservationController').get);
-app.post('/reservation', require('./controller/ReservationController').postCreateUpdate);
-app.post('/updatereservation', require('./controller/ReservationController').postCreateUpdate);
-app.put('/reservation', require('./controller/ReservationController').postCreateUpdate);
-app.delete('/reservation/:id', require('./controller/ReservationController').getDelete);
-app.get('/deletereservation/:id', require('./controller/ReservationController').getDelete);
+app.get('/reservation', reservationCont.getAll);
+app.get('/reservation/:id', reservationCont.get);
+app.post('/reservation', reservationCont.postCreateUpdate);
+app.post('/updatereservation', reservationCont.postCreateUpdate);
+app.put('/reservation', reservationCont.postCreateUpdate);
+app.delete('/reservation/:id', reservationCont.getDelete);
+app.get('/deletereservation/:id', reservationCont.getDelete);
 
 exports.app = app; 
