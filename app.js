@@ -5,6 +5,8 @@ const e = require('express');
 const express = require('express');
 const { mongo } = require('mongoose');
 const morgan = require('morgan');
+const session = require('express-session');
+const mongostore = require('connect-mongo').default;
 
 const app = express(); 
 
