@@ -16,7 +16,7 @@ afterEach(async function(){ //Execute after EACH test
 
 
 test('Create New Reservation Mongoose',async function(){
-    let newreservation = {name:"NEW",email:"test@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let newreservation = {name:"fakename",email:"test@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
 
     let created = await dao.create(newreservation);
     let found = await dao.read(created._id);
@@ -28,7 +28,7 @@ test('Create New Reservation Mongoose',async function(){
 });
 
 test('Delete a Reservation', async function(){
-    let newreservation = {name:"NEW",email:"test@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let newreservation = {name:"fakename",email:"test@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
 
     let created = await dao.create(newreservation);
     let foundBeforeDel = await dao.read(created._id);
@@ -47,10 +47,10 @@ test('Read all reservations - Empty database', async function(){
     expect(lstReservations.length).toBe(0);
 });
 
-test('Read all user', async function(){
-    let r1 = {name:"NEW1",email:"tes1t@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
-    let r2 = {name:"NEW2",email:"test2@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
-    let r3 = {name:"NEW3",email:"test3@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+test('Read all reservations', async function(){
+    let r1 = {name:"fakename1",email:"tes1t@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let r2 = {name:"fakename2",email:"test2@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let r3 = {name:"fakename3",email:"test3@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
 
     await dao.create(r1);
     await dao.create(r2);
@@ -63,7 +63,7 @@ test('Read all user', async function(){
 });
 
 test('Update a Reservation', async function(){
-    let newreservation = {name:"NEW",email:"tes1t@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let newreservation = {name:"fakename",email:"tes1t@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
     let created = await dao.create(newreservation);
 
     let updatedReservation = {name:"hehe",email:"tes1t@email.com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
@@ -79,3 +79,25 @@ test('Update a Reservation', async function(){
 });
 
 
+// took this test out bc it deleted all my existing data in mongo... whoops
+
+/* test('Delete all reservations', async function(){
+    let r1 = {name:"fakename1",email:"test@email,com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let r2 = {name:"fakename2",email:"test@email,com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+    let r3 = {name:"fakename3",email:"test@email,com",date:"2024-07-01",time:"18:00",dogs:2,puppy:false,senior:true,restype:"walker",doginfo:"none"};
+
+    await dao.create(r1);
+    await dao.create(r2);
+    await dao.create(r3);
+
+
+    let lstReservationsBeforeDel = await dao.readAll();
+    await dao.deleteAll();
+    let lstReservationsAfterDel = await dao.readAll();
+
+    expect(lstReservationsBeforeDel.length).toBe(3);
+    expect(lstReservationsAfterDel.length).toBe(0);
+
+});
+
+*/
