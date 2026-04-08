@@ -1,0 +1,41 @@
+name: Continous Integration
+on:
+  # Set up a CI Server to execute the jobs pipeline below when 
+  # a push or pull request is made at the main branch
+  push:
+    branches:
+      - main
+      - ci-setup-branch #add here all branches
+  pull_request:
+    branches:
+      - main #for pull-requests usually only the main is enough
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest # Commands must be executed on a Linux Ubuntu OS
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4 # Checkout the received code 
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '25' # Node version 25
+          cache: 'npm'
+          
+      #- name: Start MongoDB
+      #  uses: supercharge/mongodb-github-action@1.7.0
+      #  with:
+      #     mongodb-version: 'latest' 
+           
+      - name: Create mongoDB Docker container      
+        run: sudo docker run -d -p 27017:27017  -e MONGO_INITDB_ROOT_USERNAME=adm -e MONGO_INITDB_ROOT_PASSWORD=secret mongo:latest
+           
+      - name: Install packages
+        run: npm ci
+          
+      - name: Tests
+        run: npm test -- --ci --forceExit --collectCoverage  
+        env: #Sets an environment variable 
+          CI: true 
